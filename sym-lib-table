@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Nintendo")(type "KiCad")(uri "${KIPRJMOD}/Nintendo.kicad_sym")(options "")(descr ""))
+  (lib (name "Commodore")(type "KiCad")(uri "${KIPRJMOD}/Commodore.kicad_sym")(options "")(descr ""))
+)
