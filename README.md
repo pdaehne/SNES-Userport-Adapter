@@ -1,5 +1,9 @@
 # SNES Controller to CBM Userport Adapter
 
+## Warning!
+
+This PCB currently is untested! Use at own risk!
+
 ## License
 
 SNES Controller to CBM Userport Adapter (c) by Patrick Dähne
