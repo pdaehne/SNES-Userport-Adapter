@@ -1,7 +1,7 @@
 # SNES Controller to CBM Userport Adapter
 
-[![Finished Adapter Front View](images/SNES_Adapter_Finished_Front.preview.jpg)](images/SNES_Adapter_Finished_Front.jpg)
-[![Finished Adapter Back View](images/SNES_Adapter_Finished_Back.preview.jpg)](images/SNES_Adapter_Finished_Back.jpg)
+[![Finished Adapter Front View](images/SNES_Adapter_Finished_Front.preview.jpg)](images/SNES_Adapter_Finished_Front.jpg?raw=1)
+[![Finished Adapter Back View](images/SNES_Adapter_Finished_Back.preview.jpg)](images/SNES_Adapter_Finished_Back.jpg?raw=1)
 
 This repository contains the KiCad project and Gerber files for an adapter that
 allows to connect a SNES controller to the Userport of many Commodore 8-bit
@@ -73,7 +73,7 @@ When you do not plan to use the adapter on such a PET, you can simply close
 the jumper on the bottom of the PCB with a blob of solder. This will supply
 the SNES controller with +5V from pin 2 of the Userport.
 
-[![Jumper on the bottom of the PCB](images/Bottom_Jumper.preview.jpg)](images/Bottom_Jumper.jpg)
+[![Jumper on the bottom of the PCB](images/Bottom_Jumper.preview.jpg)](images/Bottom_Jumper.jpg?raw=1)
 
 When you want to use the option to use an external power supply, you can solder
 the 3x1 male pin header on the top side of the PCB. To use the +5V provided by
@@ -83,7 +83,7 @@ using female Dupont connectors. You can also use the tape port as an external po
 supply, simply connect pin 2 or B of the tape port to pin 2 of the pin header
 (no need to connect ground in this case).
 
-[![External Power Supply](images/External_Power_Supply.preview.jpg)](images/External_Power_Supply.jpg)
+[![External Power Supply](images/External_Power_Supply.preview.jpg)](images/External_Power_Supply.jpg?raw=1)
 
 ### Soldering the Audio Interface
 
@@ -98,7 +98,7 @@ Unfortunately, getting the audio jack into the PCB is extremly fiddly. Even
 though it is an official KiCad footprint, the holes seem to be a little bit to
 small.
 
-[![Audio Jack](images/Audio_Jack.preview.jpg)](images/Audio_Jack.jpg)
+[![Audio Jack](images/Audio_Jack.preview.jpg)](images/Audio_Jack.jpg?raw=1)
 
 ### Soldering the Userport Edge Connector
 
@@ -106,14 +106,14 @@ Before soldering the Userport connector, you have to bend the pins a little bit
 inwards so that they touch the surface of the PCB. Carefully push down the
 connector on a hard surface to bend the pins uniformly on both sides.
 
-[![Bending the Userport Pins](images/Bend_Userport_Pins.preview.jpg)](images/Bend_Userport_Pins.jpg)
-[![Result of Bending](images/Bend_Userport_Result.preview.jpg)](images/Bend_Userport_Result.jpg)
+[![Bending the Userport Pins](images/Bend_Userport_Pins.preview.jpg)](images/Bend_Userport_Pins.jpg?raw=1)
+[![Result of Bending](images/Bend_Userport_Result.preview.jpg)](images/Bend_Userport_Result.jpg?raw=1)
 
 When you are satisfied with the result, slide the connector onto the PCB. Doing
 that can be a little bit fiddly, be careful not to bend any pins sideways!
 
-[![Slide the Connector onto the PCB](images/Slide_Userport.preview.jpg)](images/Slide_Userport.jpg)
-[![The Edge Connector in Place](images/Userport_in_place.preview.jpg)](images/Userport_in_place.jpg)
+[![Slide the Connector onto the PCB](images/Slide_Userport.preview.jpg)](images/Slide_Userport.jpg?raw=1)
+[![The Edge Connector in Place](images/Userport_in_place.preview.jpg)](images/Userport_in_place.jpg?raw=1)
 
 Solder the edge connector into place. You'll need a lot of solder and heat.
 
@@ -125,7 +125,7 @@ sticked into the socket and can be rotated into the other direction. By using a
 pair of pliers, carefully pull out the pins a little bit, rotate them by 180
 degrees, and push them back.
 
-[![Rotate the Pins](images/Rotate_Pins.preview.jpg)](images/Rotate_Pins.jpg)
+[![Rotate the Pins](images/Rotate_Pins.preview.jpg)](images/Rotate_Pins.jpg?raw=1)
 
 Solder the socket into place. You'll need a lot of heat, especially for the
 ground pin (that's the outermost pin on the round side).
