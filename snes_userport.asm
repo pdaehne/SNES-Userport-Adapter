@@ -1,9 +1,6 @@
 ; 64tass -D TARGET_C64:=1 snes_userport.asm -o snes-c64.prg
-; 64tass -D TARGET_C64:=1 -D WAIT_FOR_VBLANK:=1 snes_userport.asm -o snes-c64-vblank.prg
 ; 64tass -D TARGET_C128:=1 snes_userport.asm -o snes-c128.prg
-; 64tass -D TARGET_C128:=1 -D WAIT_FOR_VBLANK:=1 snes_userport.asm -o snes-c128-vblank.prg
 ; 64tass -D TARGET_VIC20:=1 snes_userport.asm -o snes-vic20.prg
-; 64tass -D TARGET_VIC20:=1 -D WAIT_FOR_VBLANK:=1 snes_userport.asm -o snes-vic20-vblank.prg
 ; 64tass -D TARGET_PET:=1 snes_userport.asm -o snes-pet.prg
 ; 64tass -D TARGET_PLUS4:=1 snes_userport.asm -o snes-plus4.prg
 
@@ -12,8 +9,6 @@ TARGET_C128 :?= 0
 TARGET_VIC20 :?= 0
 TARGET_PET :?= 0
 TARGET_PLUS4 :?= 0
-
-WAIT_FOR_VBLANK :?= 0
 
 .if TARGET_C64 || TARGET_C128
 
@@ -38,9 +33,6 @@ counter = $fd
 
 CHROUT = $ffd2
 
-raster_low = $d012
-raster_high = $d011
-
 .endif
 
 .if TARGET_VIC20
@@ -61,9 +53,6 @@ snes_state = $fb
 counter = $fd
 
 CHROUT = $ffd2
-
-raster_low = $9004
-raster_high = $9003
 
 .endif
 
@@ -149,13 +138,6 @@ main_loop
 		ldy #>state
 		jsr print
 
-.if WAIT_FOR_VBLANK
--		lda raster_low
-		bne -
-		lda raster_high
-		bpl -
-.endif
-
 		jmp main_loop
 
 ; A - low byte of address
@@ -179,7 +161,7 @@ read_snes
 		sta snes_data
 
 		ldx #0
-		ldy #8
+-		ldy #8
 
 		; read one bit
 -		lda snes_data
@@ -198,17 +180,11 @@ read_snes
 		; loop for 8 bits
 		dey
 		bne -
-		ldy #4
 
 		; loop for 2 bytes
 		inx
 		cpx #2
-		bne -
-
-		rol snes_state + 1
-		rol snes_state + 1
-		rol snes_state + 1
-		rol snes_state + 1
+		bne --
 
 		rts
 
