@@ -20,9 +20,10 @@ more information. You can also use the C64 program
 [Joyride](https://github.com/T-Pau/Joyride) to test the adapter.
 
 > [!WARNING]
-> This adapter seems to work reliable with original SNES controllers, but there
-> are reports that it does not work with third-party controllers! Use at your
-> own risk!
+> This adapter works reliable with original SNES controllers, but it does not
+> work with certain third-party/aftermarket controllers! See the section
+> "[When your controller does not work](#when-your-controller-does-not-work)"
+> below for more information. Use this adapter at your own risk!
 
 ## Ordering the PCB
 
@@ -140,21 +141,87 @@ to the computer. There are two lines from the computer to the controller called
 "Data". When the computer toggles "Latch", the shift register copies the state
 of the 12 buttons into its internal register. When the computer toggles "Clock",
 the shift register sends the contents of its internal register serially over
-"Data" to the computer.
+"Data" to the computer. The first 12 bits correspond to the 12 buttons, and the
+last 4 bits are unused. Even though it might be tempting to ignore the last
+4 bits and save some time, I strongly recommend to read the full 16 bits,
+otherwise your software might not work with certain third-party controllers.
+See the section
+"[When your controller does not work](#when-your-controller-does-not-work)"
+below for more information.
+
+There is a small example assembler programm called
+[snes_userport.asm](snes_userport.asm) in this repository which demonstrates
+how to correctly read the SNES controller on PET, VIC-20, Plus/4, C64 and C128
+machines. Use [64tass](https://sourceforge.net/projects/tass64/) to compile the
+example, the command lines for the different target systems are documented at
+the top of the source code. Feel free to integrate this example code into your
+own software!
 
 There is a nice [blog post by Michael Steil](https://www.pagetable.com/?p=1365)
-that explains this more in detail. He also provides a software example, but
-keep in mind that he is using different pins of the Userport, so you have to
-adjust his example when using it with this adapter.
+that explains how the SNES controller works more in detail. He also provides a
+software example, but keep in mind that he is using different pins of the
+Userport, so you have to adjust his example when using it with this adapter.
 
 The
 [source code of PETSCII Robots](https://github.com/zeropolis79/PETSCIIRobots-C64/blob/main/C64ROBOTS.ASM)
 is also available on Github. Search for the subroutine called
-"SNES_CONTROLER_READ" to see how The 8-bit Guy reads the button states.
+"SNES_CONTROLER_READ" to see how The 8-bit Guy reads the button states. But keep
+in mind that PETSCII Robots incorrectly only reads 12 bits from the SNES
+controller, which does not work with certain third-party/after-market
+controllers.
 
 Finally, there is the
 [source code of Joyride](https://github.com/T-Pau/Joyride/blob/master/src/petscii.s)
-available on Github.
+available on Github. Starting with version 1.7, Joyride correctly reads the
+full 16 bits from the SNES controller.
+
+## When your controller does not work
+
+This adapter works reliable with original SNES controllers, but there are
+certain third-party/aftermarket controllers which do not work. Investigation
+revealed that this is not an issue with the adapter, but with the controllers.
+These controllers do not behave correctly, they do not work when software does
+not read the full 16 bits from the shift register, but only the first 12 bits
+which are actually needed to cover all buttons of the SNES controller. You can
+check if your controller is also affected by this problem by using the free
+joystick test program [Joyride](https://github.com/T-Pau/Joyride). Starting
+with version 1.7, Joyride reads the full 16 bits, so it should work correctly
+with all controllers out there.
+
+Unfortunately most software using the SNES Userport adapter incorrectly reads
+only 12 bits, most prominently PETSCII Robots itself. It is easy to fix this
+problem, but this has to be done by the respective software developers. Since
+the source code of PETSCII Robots is available, I have prepared patched versions
+for all systems in the folder [PETSCIIRobots-patched](PETSCIIRobots-patched) of
+this repository:
+
+* __[c64robots.v1.2](PETSCIIRobots-patched/c64robots.v1.2)__: Patched C64
+  version (v1.2). Replace the file "c64robots" in the disk image with this
+  file.
+* __[c64robots.v1.3](PETSCIIRobots-patched/c64robots.v1.3)__: Patched C64
+  version (v1.3). Replace the file "c64robots" in the disk image with this
+  file.
+* __[game-64x](PETSCIIRobots-patched/game-64x)__: Patched C64 REU
+  version. Replace the file "game-64x" in the disk image with this
+  file.
+* __[common-128](PETSCIIRobots-patched/common-128)__: Patched C128
+  version. Replace the file "common-128" in the disk image with this
+  file.
+* __[plus4gfx](PETSCIIRobots-patched/plus4gfx)__: Patched Plus/4
+  version. Replace the file "plus4gfx" in the disk image with this
+  file.
+* __[vicrobots](PETSCIIRobots-patched/vicrobots)__: Patched VIC-20
+  version. Replace the file "vicrobots" in the disk image with this
+  file.
+* __[petrobots](PETSCIIRobots-patched/petrobots)__: Patched PET
+  version. Replace the file "petrobots" in the disk image with this
+  file.
+* __[petrobots.gfx](PETSCIIRobots-patched/petrobots.gfx)__: Patched PET
+  version with custom character set. Replace the file "petrobots" in the disk
+  image with this file.
+
+Please keep in mind that most of these patched versions are untested, so use
+at your own risk!
 
 ## License
 
