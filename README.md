@@ -29,7 +29,8 @@ more information. You can also use the C64 program
 
 The subdirectory "gerber-files" contains a Zip file you can use to order the PCB
 from PCB manufacturers like PCBWay or JLCPCB. Simply upload the Zip on their web
-page.
+page. I recommend to order the standard PCB thickness of 1.6mm and HASL
+finishing.
 
 ## Building the Adapter
 
