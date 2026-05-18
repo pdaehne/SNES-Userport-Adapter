@@ -132,6 +132,20 @@ degrees, and push them back.
 Solder the socket into place. You'll need a lot of heat, especially for the
 ground pin (that's the outermost pin on the round side).
 
+## 3D-Printing a Case
+
+In the subdirectory "[case](case)" of this repository there are STL files you
+can use to print a case for the adapter on your 3D printer. You need a
+self-tapping flat-headed M3 Phillips screw. Mine had a length of 12mm, but any
+length between 10mm and 16mm should work.
+
+There are two variants of the case, one for the PET version with holes for the
+power supply and the audio connector, and one closed version in case you
+did not populate the PET-specific parts of the PCB.
+
+[![Case Top](images/Case-Top.preview.jpg)](images/Case-Top.jpg?raw=1)
+[![Case Top](images/Case-Bottom.preview.jpg)](images/Case-Bottom.jpg?raw=1)
+
 ## Using the Adapter in your Software
 
 The SNES controller actually just consists of a 16-bit shift register (two
